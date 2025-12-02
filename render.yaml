@@ -3,6 +3,6 @@ services:
     name: recorrido-virtual
     env: python
     buildCommand: ""
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     plan: free
     autoDeploy: true
