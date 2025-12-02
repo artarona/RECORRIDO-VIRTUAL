@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Recorrido Virtual Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+
+  <style>
+    #panorama {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+    #llave-fija {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background-image: url('/static/llave.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+<div id="panorama"></div>
+<div id="llave-fija" title="Ir a cocina"></div>
+
+<script>
+  const viewer = pannellum.viewer('panorama', {
+    "default": {
+      "firstScene": "sala",
+      "sceneFadeDuration": 1000
+    },
+    "scenes": {
+      "sala": {
+        "type": "equirectangular",
+        "panorama": "/static/UF004-17.PNG",
+        "autoLoad": true
+      },
+      "cocina": {
+        "type": "equirectangular",
+        "panorama": "/static/cocina.png"
+      },
+      "jardin": {
+        "type": "equirectangular",
+        "panorama": "/static/jardin.png"
+      }
+    }
+  });
+
+  // Acción al hacer clic en la llave
+  document.getElementById('llave-fija').onclick = () => {
+    const current = viewer.getScene();
+    if (current === "sala") {
+      viewer.loadScene("cocina");
+    } else if (current === "cocina") {
+      viewer.loadScene("jardin");
+    } else {
+      viewer.loadScene("sala");
+    }
+  };
+</script>
+
+</body>
+</html>
