@@ -13,13 +13,13 @@
       position: relative;
     }
 
-    #llave-fija {
+    #flecha-fija {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 60px;
       height: 60px;
-      background-image: url('/static/llave.png');
+      background-image: url('/static/flecha.png');
       background-size: contain;
       background-repeat: no-repeat;
       transform: translate(-50%, -50%);
@@ -31,7 +31,7 @@
 <body>
 
 <div id="panorama"></div>
-<div id="llave-fija" title="Ir a cocina"></div>
+<div id="flecha-fija" title="Ir a cocina"></div>
 
 <script>
   const viewer = pannellum.viewer('panorama', {
@@ -56,8 +56,8 @@
     }
   });
 
-  // Acción al hacer clic en la llave
-  document.getElementById('llave-fija').onclick = () => {
+  // Acción al hacer clic en la flecha
+  document.getElementById('flecha-fija').onclick = () => {
     const current = viewer.getScene();
     if (current === "sala") {
       viewer.loadScene("cocina");
