@@ -2,11 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Responsivo en móviles -->
   <title>Recorrido Virtual Demo</title>
+
+  <!-- Estilos de Pannellum -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <!-- Script de Pannellum -->
   <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
 
+  <!-- Tus estilos personalizados -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  
+  
+  
   <style>
     :root {
       --azul: #0044cc;
