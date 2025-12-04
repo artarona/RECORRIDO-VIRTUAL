@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Responsivo en móviles -->
+    <title>Recorrido Virtual Demo</title>
+
+    <!-- Estilos de Pannellum -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+
+    <!-- Script de Pannellum -->
+    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+
+    <!-- Tus estilos personalizados -->
+    <link rel="stylesheet" href="static/styles.css">
+
+
+
+
+
+    <style>
+        :root {
+            --azul: #0044cc;
+            --rojo: #cc0000;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #panorama {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        .custom-hotspot {
+            width: 60px;
+            height: 60px;
+            background-image: url('static/flecha.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        /* Chat area */
+        .chat-area {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #f9f9f9;
+            border-top: 2px solid #ddd;
+            z-index: 10000;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            /* centra verticalmente */
+            justify-content: space-between;
+            background: linear-gradient(135deg, var(--azul) 0%, var(--rojo) 100%);
+            padding: 10px 20px;
+            color: #fff;
+        }
+
+        .chat-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .chat-info h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .chat-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #0f0;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .reset-chat {
+            background: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--azul);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="panorama"></div>
+
+    <!-- Chat area -->
+    <div class="chat-area">
+        <div class="chat-header">
+            <!-- Logo a la izquierda -->
+            <img src="static/llave.png" alt="Logo Inmobiliario" class="chat-logo">
+
+            <!-- Contenido del header -->
+            <div class="chat-info">
+                <h2>Dante Propiedades</h2>
+                <div class="chat-subtitle">Recorrido virtual 360</div>
+                <!--<div class="status-indicator">
+        <div class="status-dot"></div>
+        <span id="statusText">Conectado</span>
+      </div>-->
+            </div>
+
+            <!--<button class="reset-chat" onclick="resetearChat()">Nueva Consulta</button>-->
+        </div>
+    </div>
+
+    <script>
+        const viewer = pannellum.viewer('panorama', {
+            "default": {
+                "firstScene": "sala",
+                "sceneFadeDuration": 1000
+            },
+            "scenes": {
+                "sala": {
+                    "type": "equirectangular",
+                    "panorama": "static/UF004-17.png",
+                    "autoLoad": true,
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Ir a cocina",
+                            "sceneId": "cocina",
+                            "cssClass": "custom-hotspot"
+                        }
+                    ]
+                },
+                "cocina": {
+                    "type": "equirectangular",
+                    "panorama": "static/UF004-5.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Ir a jardin",
+                            "sceneId": "jardin",
+                            "cssClass": "custom-hotspot"
+                        }
+                    ]
+                },
+                "jardin": {
+                    "type": "equirectangular",
+                    "panorama": "static/UF004-7.jpg",
+                    "hotSpots": [
+                        {
+                            "pitch": -10,
+                            "yaw": 0,
+                            "type": "scene",
+                            "text": "Ir a sala",
+                            "sceneId": "sala",
+                            "cssClass": "custom-hotspot"
+                        }
+                    ]
+                }
+            }
+        });
+
+        // Función para resetear chat (ejemplo)
+        function resetearChat() {
+            document.getElementById('statusText').innerText = "Conectado";
+            alert("Chat reiniciado");
+        }
+    </script>
+
+</body>
+
+</html>

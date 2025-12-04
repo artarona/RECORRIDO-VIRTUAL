@@ -1,8 +1,8 @@
 services:
-  - type: web
+  - type: static
     name: recorrido-virtual
-    env: python
+    env: static
     buildCommand: ""
-    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    staticPublishPath: ./
     plan: free
     autoDeploy: true
